@@ -45,7 +45,7 @@
    <blockquote> {{blog.body}}
   <footer>  {{ blog.creation_date }}</footer> </blockquote> <br>
      <strong >By <a href="{%url 'Blog:about' user.id %}"> {{ user.first_name }}</a>
-       <img src="{% media user.image %}">  </strong>
+       <img src="/media/{{user.image}}">  </strong>
      </p>
      <b class="lead">comments</b> <br>  {% for comments in blog.comment_set.all %} - {{comments.comment}} <small class="comment"> -{{comments.author}}- </small> <br> {% endfor %}
      <a href="{%url 'Blog:comments' blog.id %}">Add new comment</a>
