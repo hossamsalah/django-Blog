@@ -1,0 +1,75 @@
+<html>
+<head>
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'Blog/home.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'Blog/bootstrap.css' %}" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-3">
+    <div id="master"></div>
+
+</div>
+    <div class="col-md-6  " >
+
+    <ul class="list-inline">
+{% if user.is_authenticated %}
+  <li>  <a href="/blog/logout/">Logout</a></li>
+{% else %}
+  <li>  <a href="/blog/register/">Register Here</a></li>
+   <li> <a href="/blog/login/">Login</a></li>
+{% endif %}
+       <li> <a href="/blog/create">Add New Blog</a> </li>
+        </ul>
+{% if user %}
+
+   <h1 class="text-left">  Welcome {{user.first_name}} :D </h1>
+
+{%endif %}
+{%for category in categories%}
+<a href="{%url 'Blog:category' category.id %}">{{category}}</a>
+{%endfor%}
+
+{% if latest_blogs %}
+{% for blog in latest_blogs %}
+
+   <h2 class="bg-primary"> {{ blog.title }}<small> {{ blog.category }}</small> </h2>
+
+   <p class="bg-info">
+   <blockquote> {{blog.body}}
+  <footer>  {{ blog.creation_date }}</footer> </blockquote> <br>
+     <strong >By <a href="{%url 'Blog:about' user.id %}"> {{ user.first_name }}</a>
+       <img src="{% media user.image %}">  </strong>
+     </p>
+     <b class="lead">comments</b> <br>  {% for comments in blog.comment_set.all %} - {{comments.comment}} <small class="comment"> -{{comments.author}}- </small> <br> {% endfor %}
+     <a href="{%url 'Blog:comments' blog.id %}">Add new comment</a>
+
+      <br><br><br>
+    
+{% endfor%}
+{% else %}
+    No blogs to view
+{% endif %}
+
+
+
+
+
+</div>
+</div>
+</div>
+</body>
+</html>
+<!--<br>-->
+
+<!--{% for category in categories %}-->
+<!--{{ category}}-->
+<!--<br>-->
+<!--{% endfor %}
+comments: {% for comment in comment %}  <br> {{comment}} {% endfor %}-->

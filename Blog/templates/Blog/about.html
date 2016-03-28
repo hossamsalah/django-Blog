@@ -1,0 +1,23 @@
+<html>
+<body>
+
+{% if info%}
+{% for info in info %}
+ {{info.first_name}} {{info.last_name}} <br> {{ info.about }}
+{%endfor%}
+{%else%}
+no such author
+{%endif%}
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

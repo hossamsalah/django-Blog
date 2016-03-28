@@ -1,0 +1,10 @@
+{{blog.title}}<br>
+{{blog.author}}<br>
+{{blog.category}}<br>
+{{blog.body}}<br>
+{{blog.creation_date}}<br>
+<form action="{% url 'Blog:newcomment' blog.id %} " method="post">
+    {% csrf_token %}
+    <textarea name="comment" placeholder="add you comment" cols="20" rows="20"></textarea><br><br>
+    <input type="submit" value="add">
+</form>

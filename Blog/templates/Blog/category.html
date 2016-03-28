@@ -1,0 +1,54 @@
+<html>
+<head>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Blog/bootstrap.css' %}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-3">
+    <div id="master"></div>
+
+</div>
+    <div class="col-md-6  " >
+<a href="/blog">Home </a>
+{%for category in category %}
+<a href="{%url 'Blog:category' category.id %}">{{category}}</a>
+{%endfor%}
+
+{% if fun_blogs %}
+{% for blog in fun_blogs %}
+   <h2 class="bg-primary"> {{ blog.title }}<small> {{ blog.category }}</small> </h2>
+
+<p class="bg-info">
+<blockquote> {{blog.body}}
+<footer>  {{ blog.creation_date }}</footer> </blockquote> <br>
+<strong > By {{ blog.author }}</strong>
+
+
+</div>
+</div>
+</div>
+
+{%endfor%}
+{%else%}
+No Blogs in this category
+{%endif%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

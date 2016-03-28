@@ -1,0 +1,17 @@
+{% if categories%}
+<form action="add" method="post">
+{% csrf_token %}
+
+    <input type="text" placeholder="enter the title here" name="title"></br><br>
+    <textarea name="body" placeholder="enter the body here" cols="20" rows="20"></textarea></br><br>
+    <select name="category">
+    {% for category in categories %}
+         <option value="{{category}}">{{category}}</option>
+         {% endfor%}
+    </select><br>
+    <input type="submit" value="add"><br>
+
+</form>
+{%else%}
+<P> not found</P>
+{% endif%}

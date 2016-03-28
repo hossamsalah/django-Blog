@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/html">
+    <head>
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'Blog/login.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'Blog/bootstrap.css' %}" />
+
+        <title>Blog</title></head>
+<body>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-6 col-md-offset-3 ">
+
+<h1>Login To Blog</h1>
+<form class="form-inline" id="login_form", method="post", action="/blog/login">
+
+    {% csrf_token %}
+    <div class="form-group">
+    <label for="exampleInputName2">User Name</label>
+    <input class="form-control" id="exampleInputPassword1" type="text", name="username", value="" size="50" /><br>
+
+    <label for="exampleInputPassword1">Password</label>
+    <input class="form-control" id="exampleInputPassword1" type="password", name="password", value="" size="50" /><br>
+
+   <button type="submit" class="btn btn-default" > Submit  </button>
+        </div>
+</form>
+
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
